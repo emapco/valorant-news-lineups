@@ -1,0 +1,11 @@
+@tailwind utilities;
+
+@layer utilities {
+  .flex-col-center {
+    @apply flex flex-col flex-wrap justify-center items-center;
+  }
+
+  .flex-row-center {
+    @apply flex flex-row flex-wrap justify-center items-center;
+  }
+}

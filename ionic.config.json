@@ -1,7 +1,0 @@
-{
-  "name": "valApp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "vue"
-}

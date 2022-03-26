@@ -13,54 +13,31 @@
           </ion-title>
         </ion-toolbar>
       </ion-header>
+      <rss-feed
+        :link="link"
+        :source="source"
+      />
     </ion-content>
   </ion-page>
 </template>
-
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { ref } from "vue";
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+} from "@ionic/vue";
+import RssFeed from "@/components/RssFeed.vue";
 
-const CORS = 'https://cors-anywhere.herokuapp.com/';
-//const googleFeedUrl = 'https://news.google.com/rss/topics/CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZxT0hkMmNubzRlaElDWlc0b0FBUAE?hl=en-US&gl=US&ceid=US%3Aen';
-const vlrFeedUrl = 'https://vlr.gg/rss';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const googleFeedUrl =
+  "https://news.google.com/rss/topics/CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZxT0hkMmNubzRlaElDWlc0b0FBUAE?hl=en-US&gl=US&ceid=US%3Aen";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const vlrFeedUrl = "https://vlr.gg/rss";
+const rss = "https://rss.app/feeds/JEbDuVbXcDBvjvfO.xml";
 
-import Parser from 'rss-parser';
-type CustomFeed = {
-  title: string
-  };
-type CustomItem = {
-  title: string,
-  link: string,
-  pubDate: Date,
-  desc: string,
-  source: string
-};
-
-const parser: Parser<CustomFeed, CustomItem> = new Parser({
-  /*
-  headers: {
-    'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:98.0) Gecko/20100101 Firefox/98.0',
-  },
-  customFields: {
-    feed: ['title'],
-    item: ['title', 'link', 'pubDate', 'desc', 'source']
-  }
-
-   */
-})
-
-const getFeed = async () => {
-  try {
-    await parser.parseURL(CORS+vlrFeedUrl, (err, feed) => {
-      console.log(err);
-      console.log(feed);
-    });
-  } catch (e) {
-    console.log(e);
-  }
-
-};
-
-getFeed();
-
+const link = ref(rss);
+//const source = ref("vlr.gg");
 </script>

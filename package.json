@@ -20,6 +20,7 @@
     "@ionic/vue-router": "^6.0.0",
     "core-js": "^3.6.5",
     "https-browserify": "^1.0.0",
+    "jquery": "^3.6.0",
     "rss-parser": "^3.12.0",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.2.0",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@capacitor/cli": "3.4.3",
     "@types/jest": "^27.0.2",
+    "@types/jquery": "^3.5.14",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
     "@typescript-eslint/parser": "^5.6.0",
     "@vue/cli-plugin-babel": "~5.0.0-rc.1",

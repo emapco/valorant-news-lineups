@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Updates</ion-title>
+        <ion-title>Valorant Game Updates</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -13,10 +13,21 @@
           </ion-title>
         </ion-toolbar>
       </ion-header>
-      <rss-feed
-        :link="link"
-        :source="source"
-      />
+      <div class="flex-row-center">
+        <ion-button
+          :class="{ selected : isSelected('game')}"
+          @click="onClick('game')"
+        >
+          Game Patches
+        </ion-button>
+        <ion-button
+          :class="{ selected : isSelected('dev')}"
+          @click="onClick('dev')"
+        >
+          Dev Updates
+        </ion-button>
+      </div>
+      <rss-feed :link="link" />
     </ion-content>
   </ion-page>
 </template>
@@ -29,13 +40,35 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  IonButton,
 } from "@ionic/vue";
 import RssFeed from "@/components/RssFeed.vue";
 
-const valUpdates =
-  "https://createfeed.fivefilters.org/extract.php?url=https%3A%2F%2Fplayvalorant.com%2Fen-us%2Fnews%2F&item=div%5Bclass%2A%3D%22NewsCard-module--featured%22%5D+a&item_title=img+%40alt&item_desc=p%5Bclass%2A%3D%22copy-02+NewsCard-module--description%22%5D&item_date=p%5Bclass%2A%3D%22copy-02+NewsCard-module--dateWrapper%22%5D+span%5Bclass%2A%3D%22NewsCard-module--published%22%5D&item_date_format=m%2Fd%2Fy&feed_title=Valorant+RSS+News&max=5&order=document&guid=url";
-const CORS = "https://cors-anywhere.herokuapp.com/";
+const GAME_URL = "https://val-info-data.s3.amazonaws.com/game_updates.xml";
+const DEV_URL = "https://val-info-data.s3.amazonaws.com/dev_updates.xml";
 
-const link = ref(CORS+valUpdates);
-const source = ref("playvalorant.com");
+const link = ref(GAME_URL);
+const selectedButton = ref("game");
+
+function isSelected(id: string) {
+  return selectedButton.value === id;
+}
+
+function onClick(id: string) {
+  selectedButton.value = id;
+  switch (id) {
+    case "game":
+      link.value = GAME_URL;
+      break;
+    case "dev":
+      link.value = DEV_URL;
+      break;
+  }
+}
 </script>
+
+<style scoped>
+.selected {
+  opacity: 60%;
+}
+</style>

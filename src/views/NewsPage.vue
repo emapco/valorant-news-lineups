@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>News</ion-title>
+        <ion-title>Valorant In the News</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -13,10 +13,7 @@
           </ion-title>
         </ion-toolbar>
       </ion-header>
-      <rss-feed
-        :link="link"
-        :source="source"
-      />
+      <rss-feed :link="link" />
     </ion-content>
   </ion-page>
 </template>
@@ -36,8 +33,9 @@ const googleFeedUrl =
   "https://news.google.com/rss/topics/CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZxT0hkMmNubzRlaElDWlc0b0FBUAE?hl=en-US&gl=US&ceid=US%3Aen";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const vlrFeedUrl = "https://vlr.gg/rss";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const CORS = "https://cors-anywhere.herokuapp.com/";
 const rss = "https://rss.app/feeds/JEbDuVbXcDBvjvfO.xml";
 
 const link = ref(rss);
-//const source = ref("vlr.gg");
 </script>

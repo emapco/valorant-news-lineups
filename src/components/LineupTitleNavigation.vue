@@ -1,11 +1,15 @@
 <template>
   <ion-title>
     Lineups:
+    <span v-if="map">Map: </span>
     <span
       @click="$emit('mapDeselected')"
       class="nav-text"
     >{{ map }}</span>
-    <span v-if="map"> > </span>
+
+    <span v-if="map"> | </span>
+
+    <span v-if="agent"> Agent: </span>
     <span
       @click="$emit('agentDeselected')"
       class="nav-text"

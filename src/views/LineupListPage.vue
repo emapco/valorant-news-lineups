@@ -1,4 +1,3 @@
-/* eslint-disable vue/singleline-html-element-content-newline */
 <template>
   <ion-page>
     <ion-header>
@@ -32,6 +31,11 @@
         :map="selectedMap"
         @agent-selected="onAgentSelect"
       />
+      <lineup-list
+        v-if="selectedMap && selectedAgent"
+        :map="selectedMap"
+        :agent="selectedAgent"
+      />
       <!-- end of content -->
     </ion-content>
   </ion-page>
@@ -39,17 +43,13 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-} from "@ionic/vue";
+import { IonPage, IonHeader, IonToolbar, IonContent } from "@ionic/vue";
 
 import LineupTitleNavigation from "@/components/LineupTitleNavigation.vue";
 import MapSelection from "@/components/MapSelection.vue";
 import AgentSelection from "@/components/AgentSelection.vue";
+import LineupList from "@/components/LineupList.vue";
+
 const selectedMap = ref("");
 const selectedAgent = ref("");
 
@@ -62,13 +62,10 @@ function onAgentSelect(agentName: string) {
 }
 
 function onMapDeselect() {
-  selectedMap.value = selectedAgent.value = "";
+  selectedMap.value = "";
 }
 
 function onAgentDeselect() {
   selectedAgent.value = "";
 }
 </script>
-
-<style scoped>
-</style>

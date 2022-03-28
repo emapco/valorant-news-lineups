@@ -1,47 +1,27 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Valorant Game Updates</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">
-            Updates
-          </ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <div class="flex-row-center">
-        <ion-button
-          :class="{ selected : isSelected('game')}"
-          @click="onClick('game')"
-        >
-          Game Patches
-        </ion-button>
-        <ion-button
-          :class="{ selected : isSelected('dev')}"
-          @click="onClick('dev')"
-        >
-          Dev Updates
-        </ion-button>
-      </div>
-      <rss-feed :link="link" />
-    </ion-content>
-  </ion-page>
+  <base-layout :page-title="'Valorant Game Updates'">
+    <div class="flex-row-center">
+      <ion-button
+        :class="{ selected : isSelected('game')}"
+        @click="onClick('game')"
+      >
+        Game Patches
+      </ion-button>
+      <ion-button
+        :class="{ selected : isSelected('dev')}"
+        @click="onClick('dev')"
+      >
+        Development News
+      </ion-button>
+    </div>
+    <rss-feed :link="link" />
+  </base-layout>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonButton,
-} from "@ionic/vue";
+import { IonButton } from "@ionic/vue";
+import BaseLayout from "@/components/base/BaseLayout.vue";
 import RssFeed from "@/components/RssFeed.vue";
 
 const GAME_URL = "https://val-info-data.s3.amazonaws.com/game_updates.xml";

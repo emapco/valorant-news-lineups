@@ -1,31 +1,11 @@
 <template>
-  <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Valorant In the News</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">
-            News
-          </ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <rss-feed :link="link" />
-    </ion-content>
-  </ion-page>
+  <base-layout :page-title="'Valorant In the News'">
+    <rss-feed :link="link" />
+  </base-layout>
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-} from "@ionic/vue";
+import BaseLayout from "@/components/base/BaseLayout.vue";
 import RssFeed from "@/components/RssFeed.vue";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

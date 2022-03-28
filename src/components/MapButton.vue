@@ -3,9 +3,7 @@
     <ion-card-header class="map-name">
       <ion-card-title><u>{{ map.name }}</u></ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      <ion-img :src="map.src" />
-    </ion-card-content>
+    <ion-img :src="map.src" />
   </ion-card>
 </template>
 

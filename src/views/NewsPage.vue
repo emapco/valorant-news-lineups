@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
-import BaseLayout from "@/components/base/BaseLayout.vue";
+import BaseLayout from "@/components/layouts/BaseLayout.vue";
 import RssFeed from "@/components/RssFeed.vue";
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

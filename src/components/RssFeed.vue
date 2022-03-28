@@ -4,44 +4,30 @@
     class="m-auto w-full"
     name="dots"
   />
-  <ion-card
+  <card-layout
     v-for="(item, index) in items"
     :key="index"
+    :title="item.title"
+    :subtitle="`${item.author} | ${item.pubDate}`"
   >
-    <ion-card-header>
-      <ion-card-title>
-        {{ item.title }}
-      </ion-card-title>
-      <ion-card-subtitle v-if="item.author || item.pubDate">
-        {{ item.author }}
-        <span v-if="item.author && item.pubDate"> | </span>
-        {{ item.pubDate }}
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      {{ item.description }}
-      <br><br>
-      <a
-        :href="item.link"
-        target="_blank"
-      >
-        <ion-button>Read more</ion-button>
-      </a>
-    </ion-card-content>
-  </ion-card>
+    {{ item.description }}
+    <br><br>
+    <a
+      :href="item.link"
+      target="_blank"
+    >
+      <ion-button>Read more</ion-button>
+    </a>
+  </card-layout>
 </template>
 
 <script setup lang="ts">
 import { ref, defineProps, watch } from "vue";
 import {
-  IonCard,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCardContent,
   IonButton,
   IonSpinner,
 } from "@ionic/vue";
+import CardLayout from "@/components/base/CardLayout.vue";
 import $ from "jquery";
 
 const props = defineProps(["link"]);

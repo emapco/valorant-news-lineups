@@ -1,15 +1,11 @@
 <template>
-  <div>
-    <span
+  <div class="flex-row-center">
+    <agent-button
       v-for="(agent, key) in agents"
+      :agent="agent"
       :key="key"
-    >
-      <agent-button
-        v-if="agent.maps.includes(map)"
-        :agent="agent"
-        @click="$emit('agentSelected', agent.name)"
-      />
-    </span>
+      @click="$emit('agentSelected', agent.name)"
+    />
   </div>
 </template>
 
@@ -17,7 +13,7 @@
 import { ref, defineEmits, defineProps } from "vue";
 import AgentButton from "../components/AgentButton.vue";
 
-import { VAL_AGENTS } from "@/agent-store";
+import { VAL_AGENTS } from "@/store/agent-store";
 const agents = ref(VAL_AGENTS);
 
 const props = defineProps(["map"]);

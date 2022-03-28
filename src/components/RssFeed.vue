@@ -27,7 +27,7 @@ import {
   IonButton,
   IonSpinner,
 } from "@ionic/vue";
-import CardLayout from "@/components/base/CardLayout.vue";
+import CardLayout from "@/components/layouts/CardLayout.vue";
 import $ from "jquery";
 
 const props = defineProps(["link"]);

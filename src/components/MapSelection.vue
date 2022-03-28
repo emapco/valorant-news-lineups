@@ -13,7 +13,7 @@
 import { ref, defineEmits } from "vue";
 import MapButton from "../components/MapButton.vue";
 
-import { VAL_MAPS } from "@/map-store";
+import { VAL_MAPS } from "@/store/map-store";
 const maps = ref(VAL_MAPS);
 
 const emit = defineEmits(["mapSelected"]);

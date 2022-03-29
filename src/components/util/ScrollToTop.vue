@@ -1,12 +1,11 @@
 <template>
   <ion-button
-    fill="outline"
+    fill="clear"
     size="small"
     shape="round"
-    class="z-20 absolute bottom-3 left-3"
     @click="scrollToTop"
   >
-    Top
+    <slot />
   </ion-button>
 </template>
 
@@ -14,9 +13,11 @@
 import { IonButton } from "@ionic/vue";
 
 /**
- * Tabs application has a inner scrollable layout so 
+ * Tabs application has a inner scrollable layout so
  * window.scrollTo() doesn't work.
- * Thus this function instead gets all the pages in the inner layout, identifies which page is currently displayed (based on class names). Then the displayed page's scrollTop is set to 0.
+ * Thus this function instead gets all the pages in the inner
+ * layout, identifies which page is currently displayed (based on
+ * class names). Then the displayed page's scrollTop is set to 0.
  */
 function scrollToTop() {
   // innner scrollable layout pages have the 'content-ltr' class

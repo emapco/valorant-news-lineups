@@ -1,5 +1,5 @@
 <template>
-  <ion-card class="w-full">
+  <ion-card class="w-auto">
     <ion-card-header>
       <ion-card-title v-if="title">
         {{ title }}

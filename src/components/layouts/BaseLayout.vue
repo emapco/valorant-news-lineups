@@ -2,8 +2,13 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-buttons slot="start" v-if="pageDefaultBackLink">
-          <ion-back-button :default-href="pageDefaultBackLink" />
+        <ion-buttons
+          slot="start"
+          v-if="pageDefaultBackLink"
+        >
+          <ion-back-button
+            :default-href="pageDefaultBackLink"
+          />
         </ion-buttons>
         <ion-title>{{ pageTitle }}</ion-title>
       </ion-toolbar>
@@ -35,6 +40,3 @@ import {
 
 const props = defineProps(["pageTitle", "pageDefaultBackLink"]);
 </script>
-
-<style>
-</style>

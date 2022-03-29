@@ -21,7 +21,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { IonButton } from "@ionic/vue";
-import BaseLayout from "@/components/layouts/BaseLayout.vue";
 import RssFeed from "@/components/RssFeed.vue";
 
 const GAME_URL = "https://val-info-data.s3.amazonaws.com/game_updates.xml";

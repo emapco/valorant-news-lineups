@@ -1,7 +1,12 @@
 <template>
   <ion-accordion-group class="w-full">
     <ion-accordion value="shapes">
-      <ion-item slot="header">{{ title }}</ion-item>
+      <ion-item
+        class="font-semibold text-lg"
+        slot="header"
+      >
+        {{ title }}
+      </ion-item>
       <ion-list slot="content">
         <slot slot="content" />
       </ion-list>

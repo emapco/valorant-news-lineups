@@ -16,7 +16,7 @@
       :href="item.link"
       target="_blank"
     >
-      <ion-button>Read more</ion-button>
+      <ion-button>Read article</ion-button>
     </a>
   </card-layout>
 </template>

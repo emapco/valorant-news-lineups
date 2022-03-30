@@ -1,9 +1,6 @@
 <template>
   <card-layout class="agent-card">
-    <ion-img
-      :src="agent.src"
-      :alt="agent.name"
-    />
+    <ion-img :src="agent.src" />
   </card-layout>
 </template>
 
@@ -19,11 +16,9 @@ const props = defineProps(["agent"]);
 .agent-card {
   background-size: contain;
   background-repeat: no-repeat;
-  @apply w-[40%] sm:w-[33%] md:w-[25%] lg:w-[13%]
-    hover:w-[42%] sm:hover:w-[34%] md:hover:w-[26%] lg:hover:w-[14%]
-    landscape:w-[29%] landscape:hover:w-[30%]
-    landscape:sm:w-[20%] landscape:sm:hover:w-[21%]
-    landscape:lg:w-[16%] landscape:lg:hover:w-[17%];
+  @apply w-[40%] sm:w-[30%] md:w-[25%] lg:w-[13%]
+    hover:w-[42%] sm:hover:w-[30.5%] md:hover:w-[25.5%] lg:hover:w-[13.5%];
   @apply cursor-pointer duration-300 ease-out;
 }
 </style>
+<!--hover:w-[42%] sm:hover:w-[30.5%] md:hover:w-[25.5%] lg:hover:w-[13.5%]; -->

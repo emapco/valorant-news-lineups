@@ -1,9 +1,10 @@
 <template>
   <ion-page>
     <ion-tabs>
+      <install-banner />
       <scroll-to-top>
         <ion-icon :icon="chevronUp" />
-        <ion-label>Scroll to top</ion-label>
+        <ion-label>&nbsp;Scroll to top&nbsp;</ion-label>
         <ion-icon :icon="chevronUp" />
       </scroll-to-top>
       <ion-router-outlet />
@@ -47,5 +48,8 @@ import {
   IonRouterOutlet,
 } from "@ionic/vue";
 import { trendingUp, newspaper, build, chevronUp } from "ionicons/icons";
+
 import ScrollToTop from "@/components/util/ScrollToTop.vue";
+import InstallBanner from "@/components/util/InstallBanner.vue";
+
 </script>

@@ -15,27 +15,35 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
-        redirect: defaultHref
+        redirect: 'lineups',
       },
       {
         path: 'updates',
-        component: () => import('@/views/UpdatesPage.vue')
+        redirect: 'updates/patches',
+      },
+      {
+        path: 'updates/patches',
+        component: () => import('@/views/updatesTabPages/GamePatchesPage.vue')
+      },
+      {
+        path: 'updates/dev',
+        component: () => import('@/views/updatesTabPages/GameDevPage.vue')
       },
       {
         path: 'news',
-        component: () => import('@/views/NewsPage.vue')
+        component: () => import('@/views/newsTabPages/NewsPage.vue')
       },
       {
         path: 'lineups',
-        component: () => import('@/views/LineupsPage.vue'),
+        component: () => import('@/views/lineupsTabPages/MapSelectionPage.vue'),
       },
       {
         path: 'lineups/:map',
-        component: () => import('@/views/AgentSelectionPage.vue')
+        component: () => import('@/views/lineupsTabPages/AgentSelectionPage.vue')
       },
       {
         path: 'lineups/:map/:agent',
-        component: () => import('@/views/AgentLineupPage.vue')
+        component: () => import('@/views/lineupsTabPages/AgentLineupPage.vue')
       }
     ]
   }, 

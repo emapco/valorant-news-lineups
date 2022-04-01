@@ -8,7 +8,7 @@
         {{ title }}
       </ion-item>
       <ion-list slot="content">
-        <slot slot="content" />
+        <slot />
       </ion-list>
     </ion-accordion>
   </ion-accordion-group>

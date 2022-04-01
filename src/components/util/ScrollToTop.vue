@@ -1,5 +1,6 @@
 <template>
   <ion-button
+    class="btn"
     fill="clear"
     size="small"
     shape="round"
@@ -21,15 +22,16 @@ import { IonButton } from "@ionic/vue";
  */
 function scrollToTop() {
   // innner scrollable layout pages have the 'content-ltr' class
-  const inner_pages = document.getElementsByClassName("content-ltr");
-  const nrPages = inner_pages.length;
+  const innerPages = document.getElementsByClassName("content-ltr");
+  const nrPages = innerPages.length;
   // for..in results in strings instead of DOM elements
   for (let i = 0; i < nrPages; i++) {
     try {
-      const parentClasses = Array.from(inner_pages[i]?.parentNode.classList);
+      const parentClasses = Array.from(innerPages[i]?.parentNode.classList);
       // displayed page does not contain the class 'ion-page-hidden'
       if (!parentClasses.includes("ion-page-hidden")) {
-        inner_pages[i].shadowRoot.children[2].scrollTop = 0;
+        innerPages[i].shadowRoot.children[1].scrollTop = 0; // chrome
+        innerPages[i].shadowRoot.children[2].scrollTop = 0; // firefox
       }
     } catch (error) {
       console.log(error);
@@ -37,3 +39,9 @@ function scrollToTop() {
   }
 }
 </script>
+
+<style scoped>
+.btn {
+  height: 1.25rem;
+}
+</style>

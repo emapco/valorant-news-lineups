@@ -1,7 +1,7 @@
 <template>
   <ion-card class="map-card">
     <ion-card-header class="map-name">
-      <ion-card-title><u>{{ map.name }}</u></ion-card-title>
+      <ion-card-title><u>{{ titleCase(map.name) }}</u></ion-card-title>
     </ion-card-header>
     <ion-img
       :src="map.src"
@@ -13,6 +13,7 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
 import { IonImg, IonCard, IonCardTitle, IonCardHeader } from "@ionic/vue";
+import { titleCase } from "@/util";
 
 const props = defineProps(["map"]);
 </script>

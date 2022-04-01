@@ -14,10 +14,10 @@
 <script setup lang='ts'>
 import { defineProps } from "vue";
 import { IonImg, IonItem } from "@ionic/vue";
-import CardLayout from "./layouts/CardLayout.vue";
-import AccordionLayout from "./layouts/AccordionLayout.vue";
+import CardLayout from "@/components/layouts/CardLayout.vue";
+import AccordionLayout from "@/components/layouts/AccordionLayout.vue";
 
-import { ValLineup } from "@/store/lineup-store";
+import { ValLineup } from "@/store/LineupTypes";
 
 const props = defineProps<{
   lineup: ValLineup;

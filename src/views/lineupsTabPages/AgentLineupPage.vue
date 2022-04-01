@@ -1,9 +1,9 @@
 <template>
   <base-layout
-    :page-title="`Lineups: ${titleCase(map)} | ${titleCase(agent)} `"
-    :page-default-back-link="`/tabs/lineups/${map}`"
+    :page-title="pageTitle"
+    :page-default-back-link="pageDefaultBackLink"
   >
-    <lineup-list
+    <agent-lineup-list
       :agent="agent"
       :map="map"
     />
@@ -11,10 +11,10 @@
 </template>
 
 <script setup lang='ts'>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 import { titleCase } from "@/util";
-import LineupList from "@/components/LineupList.vue";
+import AgentLineupList from "@/components/lineupsTabComponents/AgentLineupList.vue";
 
 const map = ref("");
 const agent = ref("");
@@ -26,4 +26,9 @@ if (typeof route.params.map === "string") {
 if (typeof route.params.agent === "string") {
   agent.value = route.params.agent;
 }
+
+const pageTitle = computed(
+  () => `Lineups: ${titleCase(map.value)} | ${titleCase(agent.value)} `
+);
+const pageDefaultBackLink = computed(() => `/tabs/lineups/${map.value}`);
 </script>

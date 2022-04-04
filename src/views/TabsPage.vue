@@ -10,14 +10,6 @@
       <ion-router-outlet />
       <ion-tab-bar slot="bottom">
         <ion-tab-button
-          tab="updates"
-          href="/tabs/updates"
-        >
-          <ion-icon :icon="build" />
-          <ion-label>Updates</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button
           tab="lineups"
           href="/tabs/lineups"
         >
@@ -31,6 +23,22 @@
         >
           <ion-icon :icon="newspaper" />
           <ion-label>News</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button
+          tab="gamePatches"
+          href="/tabs/game-patches"
+        >
+          <ion-icon :icon="bug" />
+          <ion-label>Updates</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button
+          tab="devNews"
+          href="/tabs/dev-news"
+        >
+          <ion-icon :icon="build" />
+          <ion-label>Dev News</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
@@ -47,9 +55,8 @@ import {
   IonPage,
   IonRouterOutlet,
 } from "@ionic/vue";
-import { trendingUp, newspaper, build, chevronUp } from "ionicons/icons";
+import { trendingUp, newspaper, build, chevronUp, bug } from "ionicons/icons";
 
 import ScrollToTop from "@/components/util/ScrollToTop.vue";
 import InstallBanner from "@/components/util/InstallBanner.vue";
-
 </script>

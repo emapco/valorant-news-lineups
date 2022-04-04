@@ -1,7 +1,10 @@
 <template>
-  <base-layout page-title="Valorant Game Updates">
-    <game-updates-nav-buttons selected="game" />
-    <rss-feed :link="link" />
+  <base-layout page-title="Valorant Game Patches">
+    <rss-feed
+      :link="link"
+      author="playvalorant.com"
+      data-type="json"
+    />
   </base-layout>
 </template>
 
@@ -10,6 +13,6 @@ import { ref } from "vue";
 import RssFeed from "@/components/util/RssFeed.vue";
 import GameUpdatesNavButtons from "@/components/updatesTabComponents/GameUpdatesNavButtons.vue";
 
-const GAME_URL = "https://val-info-data.s3.amazonaws.com/game_updates.xml";
+const GAME_URL = "https://val-info-data.s3.amazonaws.com/game_updates.json.br";
 const link = ref(GAME_URL);
 </script>

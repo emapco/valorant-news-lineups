@@ -1,6 +1,9 @@
 <template>
-  <ion-card class="w-auto">
-    <ion-card-header>
+  <ion-card
+    class="w-auto shadow-xl"
+    :color="color"
+  >
+    <ion-card-header v-if="title || subtitle">
       <ion-card-title v-if="title">
         {{ title }}
       </ion-card-title>
@@ -24,5 +27,5 @@ import {
   IonCardContent,
 } from "@ionic/vue";
 
-const props = defineProps(["title", "subtitle"]);
+const props = defineProps(["title", "subtitle", "color"]);
 </script>

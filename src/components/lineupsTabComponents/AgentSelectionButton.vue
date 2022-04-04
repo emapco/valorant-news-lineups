@@ -1,18 +1,37 @@
 <template>
-  <card-layout class="agent-card">
+  <card-layout
+    class="agent-card"
+  >
     <ion-img
-      :src="agent.src"
+      :src="imgSrc"
       :alt="agent.name"
     />
   </card-layout>
 </template>
 
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, ref, onMounted, nextTick } from "vue";
 import { IonImg } from "@ionic/vue";
 import CardLayout from "@/components/layouts/CardLayout.vue";
+import { generateScaledDownImageURL } from "@/util";
 
 const props = defineProps(["agent"]);
+const imgSrc = ref("");
+
+setImage();
+
+async function setImage() {
+  let windowWidth = window.innerWidth;
+  let imgWidth = 180;
+  switch (true) {
+    case windowWidth > 1200:
+      imgWidth = 300;
+      break;
+    case windowWidth > 500:
+      imgWidth = 250;
+  }
+  imgSrc.value = await generateScaledDownImageURL(imgWidth, props.agent.src);
+}
 </script>
 
 <style scoped>

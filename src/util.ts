@@ -11,3 +11,18 @@ export function titleCase(value: string|null): string {
   return value.replace(
       unicodeWordMatch, (txt => txt[0].toUpperCase() + txt.substr(1).toLowerCase()));
 }
+
+const baseURL = "https://res.cloudinary.com/quartzqubit/image/upload/";
+
+/**
+ * 
+ * @param width: the scaled down images width
+ * @param imageIdUrl: Remainder of the url that points to the specific image
+ */
+export async function generateScaledDownImageURL(width: number, imageIdUrl: string): Promise<string> {
+  return baseURL + "w_" + width + ",c_scale/" + imageIdUrl;
+}
+
+export async function generateCircleImageURL(width: number, imageIdUrl: string): Promise<string> {
+  return baseURL + "w_" + width + ",h_" + width + ",c_fill,r_max/" + imageIdUrl;
+}

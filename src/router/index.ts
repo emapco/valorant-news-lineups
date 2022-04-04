@@ -14,24 +14,16 @@ const routes: Array<RouteRecordRaw> = [
     component: TabsPage,
     children: [
       {
-        path: '',
-        redirect: 'lineups',
+        path: 'game-patches',
+        component: () => import('@/views/GamePatchesPage.vue')
       },
       {
-        path: 'updates',
-        redirect: 'updates/patches',
-      },
-      {
-        path: 'updates/patches',
-        component: () => import('@/views/updatesTabPages/GamePatchesPage.vue')
-      },
-      {
-        path: 'updates/dev',
-        component: () => import('@/views/updatesTabPages/GameDevPage.vue')
+        path: 'dev-news',
+        component: () => import('@/views/GameDevPage.vue')
       },
       {
         path: 'news',
-        component: () => import('@/views/newsTabPages/NewsPage.vue')
+        component: () => import('@/views/NewsPage.vue')
       },
       {
         path: 'lineups',
@@ -44,7 +36,7 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'lineups/:map/:agent',
         component: () => import('@/views/lineupsTabPages/AgentLineupPage.vue')
-      }
+      },
     ]
   }, 
   {

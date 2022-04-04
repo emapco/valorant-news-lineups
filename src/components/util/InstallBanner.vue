@@ -1,6 +1,7 @@
 <template>
   <card-layout
     v-if="deferredPrompt"
+    color="medium"
     class="banner"
   >
     <ion-icon
@@ -9,11 +10,11 @@
       @click="dismiss"
     />
     <div class="card-content">
-      Install ValInformer for lineups at your fingertips<br>
+      Install <span class="underline text-base">Val Informer</span> for lineups at your fingertips!<br>
       <ion-button
-        color="primary"
+        color="light"
         shape="round"
-        fill="outline"
+        fill="solid"
         @click="install"
       >
         <ion-label>install</ion-label>
@@ -61,16 +62,16 @@ function install() {
 
 <style scoped>
 .banner {
-  @apply absolute left-0 right-0 my-8 mx-auto px-4 z-50 
+  @apply absolute left-0 right-0 mx-auto mt-10 px-4 z-50 
    w-4/5 sm:w-[55%] md:w-[45%] lg:w-[25%]
-   shadow-2xl drop-shadow-2xl;
+   shadow-2xl drop-shadow-lg;
 }
 
 .close-icon {
-  @apply absolute right-0 text-2xl;
+  @apply cursor-pointer absolute right-0 top-2 text-2xl;
 }
 
 .card-content {
-  @apply w-5/6 mx-auto text-center font-bold;
+  @apply text-center font-black;
 }
 </style>

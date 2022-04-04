@@ -8,91 +8,68 @@
     v-for="(item, index) in items"
     :key="index"
     :title="item.title"
-    :subtitle="`${item.author} | ${item.pubDate}`"
+    :subtitle="`${author} | ${item.date}`"
   >
-    {{ item.description }}
+    {{ item.content }}
     <br><br>
     <a
-      :href="item.link"
+      :href="item.href"
       target="_blank"
     >
-      <ion-button>Read article</ion-button>
+      <ion-button>
+        <ion-label>Read Article&nbsp;</ion-label>
+        <ion-icon class="text-sm" :icon="openOutline" />
+      </ion-button>
     </a>
   </card-layout>
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, watch } from "vue";
-import {
-  IonButton,
-  IonSpinner,
-} from "@ionic/vue";
+import { Ref, ref, defineProps } from "vue";
+import { IonButton, IonLabel, IonSpinner, IonIcon } from "@ionic/vue";
+import { openOutline } from "ionicons/icons";
 import CardLayout from "@/components/layouts/CardLayout.vue";
-import $ from "jquery";
 
-const props = defineProps(["link"]);
-const link = ref(props.link);
-const items = ref([]);
+const props = defineProps(["link", "author", "dataType"]);
+const items: Ref<FeedItem[]> = ref([]);
 
-const NUM_RE = /^[0-9]*$/; // to determine if date is in UTC milliseconds
-const get_response_cache: any = {}; // for storing get response cache
-
-check_get_cache();
+fetchRSSFeed(props.link);
 
 /**
- * watch function for detecting changes to the link prop.
- * It then updates the link's ref value and checks if the
- * link has been cached
+ * Fetches a RSS feed
+ * The feed data may be a json or xml(rss) file.
+ * The function parses the data according to the dataType passed as a prop.
+ * @param link: A href pointing to the resource that contains feed items.
  */
-watch(
-  () => props.link,
-  async (newVal) => {
-    items.value = [];
-    link.value = newVal;
-    check_get_cache();
-  }
-);
-
-/**
- * Checks if the particular link has been added to caching variable
- * via key:value (url:get response) pairs.
- *
- * If url is a key then it sets the items.value to the stored get response.
- * Otherwise make a get request and cache it as a key:value pair
- */
-function check_get_cache() {
-  if (Object.keys(get_response_cache).includes(link.value)) {
-    items.value = get_response_cache[link.value];
+async function fetchRSSFeed(link: string) {
+  const response = await fetch(link);
+  if (props.dataType === 'json') {
+    items.value = await response.json();
+    // each item's date is in UTC milliseconds thus convert it
+    items.value.forEach((item: FeedItem) => {
+      item.date = new Date(item.date).toLocaleDateString()
+    });
   } else {
-    getRSSFeed(link.value);
-    get_response_cache[link.value] = items.value;
+    let text = await response.text();
+    // result is a xml RSS document thus get every item
+    // and extract the content from the various tags
+    const domParser = new window.DOMParser().parseFromString(text, "text/xml");
+    const data = domParser.querySelectorAll('item');
+    data.forEach((item) => {
+      items.value.push({
+        title: item.querySelector('title')?.innerHTML,
+        content: item.querySelector('description')?.innerHTML,
+        date: item.querySelector('pubDate')?.innerHTML,
+        href: item.querySelector('link')?.innerHTML
+      });
+    });
   }
 }
 
-/**
- * Uses jquery to get xml (RSS feed) file and
- * then selects each item in the feed
- */
-function getRSSFeed(url: string) {
-  $.get(url, (data) => {
-    let $xml = $(data);
-    $xml.find("item").each(function () {
-      let $this = $(this),
-        item = {
-          title: $this.find("title").text(),
-          link: $this.find("link").text(),
-          description: $this.find("description").text(),
-          pubDate: $this.find("pubDate").text(),
-          author: $this.find("dc\\:creator").text(),
-        };
-
-      // feed might have date in UTC milliseconds thus
-      // if regex matches then convert
-      if (NUM_RE.test(item.pubDate)) {
-        item.pubDate = new Date(Number(item.pubDate)).toLocaleDateString();
-      }
-      items.value.push(item);
-    });
-  });
+interface FeedItem {
+  title?: string,
+  content?: string,
+  date?: string,
+  href?: string
 }
 </script>

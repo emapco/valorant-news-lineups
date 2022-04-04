@@ -4,8 +4,10 @@
       v-for="(img, index) in lineup.imgDesc"
       :key="index"
     >
-      <card-layout :title="img.description">
-        <ion-img :src="img.src" />
+      <card-layout class="!w-full" :title="img.description">
+        <div class="flex items-center justify-center" >
+          <ion-img :src="img.src" />
+        </div>
       </card-layout>
     </ion-item>
   </accordion-layout>

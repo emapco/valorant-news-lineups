@@ -1,9 +1,7 @@
 <template>
-  <accordion-layout :title="accordionTitle">
-    <ion-item
-      v-if="!lineupList.length"
-    >
-      Sorry, we currently don't have {{ agentName }} {{ mapSide }} lineups
+  <accordion-layout :title="abilityNameTitle">
+    <ion-item v-if="!lineupList.length">
+      Sorry, we currently don't have {{ abilityNameTitle }} lineups
     </ion-item>
     <ion-item
       v-else
@@ -23,7 +21,7 @@ import { titleCase } from "@/util";
 import AccordionLayout from "@/components/layouts/AccordionLayout.vue";
 import LineupListItem from "@/components/lineupsTabComponents/LineupListItem.vue";
 
-const props = defineProps(["agentName", "lineupList", "mapSide"]);
+const props = defineProps(["agentName", "lineupList", "abilityName"]);
 
-const accordionTitle = computed(() => `${titleCase(props.mapSide)} Side`);
+const abilityNameTitle = computed(() => `${titleCase(props.abilityName)}`);
 </script>

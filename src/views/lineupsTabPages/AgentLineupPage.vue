@@ -5,7 +5,7 @@
   >
     <agent-lineup-list
       :agent="agent"
-      :map="map"
+      :map-name="mapName"
     />
   </base-layout>
 </template>
@@ -16,19 +16,28 @@ import { useRoute } from "vue-router";
 import { titleCase } from "@/util";
 import AgentLineupList from "@/components/lineupsTabComponents/AgentLineupList.vue";
 
-const map = ref("");
-const agent = ref("");
+import agentsData from "@/store/agents.json";
+const mapName = ref("");
+const agent: any = ref(null);
+let agentName = "";
 
 const route = useRoute();
 if (typeof route.params.map === "string") {
-  map.value = route.params.map;
+  mapName.value = route.params.map;
 }
 if (typeof route.params.agent === "string") {
-  agent.value = route.params.agent;
+  agentName = route.params.agent;
 }
 
+// locate agent in json array so we can pass it to child component
+agentsData.forEach((a) => {
+  if (a.name === route.params.agent) {
+    agent.value = a;
+  }
+});
+
 const pageTitle = computed(
-  () => `Lineups: ${titleCase(map.value)} | ${titleCase(agent.value)} `
+  () => `Lineups: ${titleCase(mapName.value)} | ${titleCase(agentName)} `
 );
-const pageDefaultBackLink = computed(() => `/tabs/lineups/${map.value}`);
+const pageDefaultBackLink = computed(() => `/tabs/lineups/${mapName.value}`);
 </script>
